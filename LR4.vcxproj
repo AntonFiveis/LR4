@@ -147,7 +147,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BMPpicture.cpp" />
     <ClCompile Include="LR4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="test.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BMPpicture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
