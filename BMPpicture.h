@@ -7,7 +7,9 @@ class BMPpicture
 {
 private:
 	ifstream iFile;
-	struct  {
+    string oFileName;
+    string tempfilename;
+	struct BMPheader   {
         int8_t id1;            // Завжди дві літери 'B' і 'M'
         int8_t id2;            // Завжди дві літери 'B' і 'M'
         int32_t filesize;        // Розмір файла в байтах
@@ -16,7 +18,7 @@ private:
         int32_t headersize;      // 54L для 24-бітних зображень
         int32_t infoSize;        // 40L для 24-бітних зображень
         int32_t width;           // ширина зображення в пікселях
-        int32_t depth;           // висота зображення в пікселях
+        int32_t height;           // висота зображення в пікселях
         int16_t biPlanes;        // 1 (для 24-бітних зображень)
         int16_t bits;            // 24 (для 24-бітних зображень)
         int32_t biCompression;   // 0L
@@ -31,6 +33,8 @@ private:
         int8_t greenComponent;
         int8_t blueComponent;
     };
+    void BiggerWidth(int);
+    void BiggerHeight(int);
     void readHead();
 public:
     BMPpicture(string );

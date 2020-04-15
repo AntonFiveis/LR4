@@ -3,8 +3,12 @@
 #include "BMPpicture.h"
 #include <iostream>
 using namespace std;
-int main()
+int main(int argc,char *argv[])
 {
-    BMPpicture test("test.bmp");
-    test.copyBigger("test7.bmp",2);
+    int n;
+    string s(argv[3]);
+    n=stoi(s);
+    BMPpicture test(argv[1]);
+    test.copyBigger(argv[2],n);
+   
 }
