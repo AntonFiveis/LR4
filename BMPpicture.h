@@ -35,7 +35,7 @@ private:
 public:
     BMPpicture(string );
     void copyTo(string);
-    void copyBigger(string);
+    void copyBigger(string,int);
     void outputHead();
 };
 

@@ -38,27 +38,35 @@ void BMPpicture::copyTo(string ofilename) {
 	}
 
 }
-void BMPpicture::copyBigger(string ofilename) {
+void BMPpicture::copyBigger(string ofilename,int n) {
 	ofstream oFile(ofilename, ios::binary);
-	pixelData temp;
+	int8_t temp[3];
+	int32_t newwidth = (BMPHEAD.width << 1);
+	int32_t newsize = BMPHEAD.filesize * 2 - BMPHEAD.headersize;
 	char temp2;
 	iFile.seekg(0, ios::beg);
 	for (int i = 0; i < BMPHEAD.headersize; i++) {
 		iFile.read(&temp2, sizeof(int8_t));
 		oFile.write(&temp2, sizeof(int8_t));
 	}
+	cout << (BMPHEAD.width / 4)*4 << ' ' << BMPHEAD.width % 4;
+	temp2 = 0;
 	while (!iFile.eof()) {
-		iFile.read((char*)&temp.blueComponent, sizeof(int8_t));
-		iFile.read((char*)&temp.greenComponent, sizeof(int8_t));
-		iFile.read((char*)&temp.redComponent, sizeof(int8_t));
-		for (int i = 0; i < 2; i++) {
-			oFile.write((char*)&temp.blueComponent, sizeof(int8_t));
-			oFile.write((char*)&temp.greenComponent, sizeof(int8_t));
-			oFile.write((char*)&temp.redComponent, sizeof(int8_t));
+		for (int j = 0; j < BMPHEAD.width; j++) {
+			iFile.read((char*)temp, 3 * sizeof(int8_t));
+
+			for (int i = 0; i < n; i++) {
+				oFile.write((char*)temp, 3 * sizeof(int8_t));
+			}
+		}
+		for (int i = 0; i < (BMPHEAD.width * 3) % 4; i++) {
+			iFile.read(&temp2, sizeof(int8_t));
+		}
+		for (int i = 0; i < (newwidth * 3) % 4; i++) {
+			oFile.write(&temp2, sizeof(int8_t));
 		}
 	}
-	int32_t newwidth= BMPHEAD.width * 2;
-	int32_t newsize = BMPHEAD.filesize * 2 - BMPHEAD.headersize;
+	
 	oFile.seekp(18);
 	
 	oFile.write((char*)&newwidth, sizeof(int32_t));
@@ -70,5 +78,5 @@ BMPpicture::BMPpicture(string ifilename) {
 	
 	readHead();
 	outputHead();
-	//copyBigger("test1.bmp");
+
 }

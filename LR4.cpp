@@ -6,4 +6,5 @@ using namespace std;
 int main()
 {
     BMPpicture test("test.bmp");
+    test.copyBigger("test7.bmp",2);
 }
