@@ -35,11 +35,14 @@ private:
     };
     void BiggerWidth(int);
     void BiggerHeight(int);
+    void SmallerWidth(int);
+    void SmallerHeight(int);
     void readHead();
 public:
     BMPpicture(string );
     void copyTo(string);
     void copyBigger(string,int);
+    void copyBigger(string, double);
     void outputHead();
 };
 

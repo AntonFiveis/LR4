@@ -138,11 +138,31 @@ void BMPpicture::BiggerHeight( int n) {
 	tmpfile.close();
 	oFile.close();
 }
+void BMPpicture::SmallerHeight(int n) {
+
+}
 void BMPpicture::copyBigger(string ofname, int n) {
 	oFileName = ofname;
 	tempfilename = "temporaryfile.bmp";
 	BiggerWidth(n);
 
 	BiggerHeight(n);
+	remove(tempfilename.c_str());
+}
+void BMPpicture::copyBigger(string ofname, double n) {
+	oFileName = ofname;
+	tempfilename = "temporaryfile.bmp";
+	int up, down;
+	for (int i = 2;; i++) {
+		if (abs((int)(n * i) - n * i) < 0.1) {
+			up = int(n * i);
+			down = i;
+		}
+	}
+	BiggerWidth(up);
+	BiggerHeight(up);
+	remove(tempfilename.c_str());
+	SmallerHeight(down);
+	SmallerWidth(down);
 	remove(tempfilename.c_str());
 }
