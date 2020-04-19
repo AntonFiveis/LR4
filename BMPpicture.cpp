@@ -281,6 +281,7 @@ void BMPpicture::SmallerWidth(string iFileName, string oFileName, int n) {
 
 //public functions copyBigger
 void BMPpicture::copyBigger(string ifname,string ofname, int n) {
+	cout << "Begin working with image...";
 	//temp filename
 	string tempfilename = "temporaryfile.bmp";
 	
@@ -290,6 +291,7 @@ void BMPpicture::copyBigger(string ifname,string ofname, int n) {
 
 	//removing temp file
 	remove(tempfilename.c_str());
+	cout << "Done!";
 }
 void BMPpicture::copyBigger(string ifname,string ofname, double n) {
 	//temporary file names
@@ -306,7 +308,12 @@ void BMPpicture::copyBigger(string ifname,string ofname, double n) {
 		if (abs(round(n * i) - n * i) < 0.1) {
 			up = round(n * i);
 			down = i;
+			cout << "Begin working with image...";
 			break;
+		}
+		if (i > 40) {
+			cout << "Invalid value" << endl;
+			return;
 		}
 	}
 
@@ -325,4 +332,5 @@ void BMPpicture::copyBigger(string ifname,string ofname, double n) {
 	remove(tfn2.c_str());
 	remove(tfn3.c_str());
 	remove(tfn4.c_str());
+	cout << "Done!";
 }
