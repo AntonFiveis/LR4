@@ -1,14 +1,14 @@
 ﻿// LR4.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 #include "BMPpicture.h"
-#include <iostream>
-using namespace std;
 int main(int argc,char *argv[])
 {
-    int n;
+    if (argc != 4)
+        return -1;
+    double n;
     string s(argv[3]);
-    n=stoi(s);
-    BMPpicture test(argv[1]);
-    test.copyBigger(argv[2],n);
-   
+    n=stod(s);
+    BMPpicture test;
+    test.copyBigger(argv[1],argv[2],n);
+    return 0;
 }

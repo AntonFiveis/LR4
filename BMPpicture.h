@@ -6,10 +6,7 @@ using std::string;
 class BMPpicture
 {
 private:
-	ifstream iFile;
-    string oFileName;
-    string tempfilename;
-	struct BMPheader   {
+    struct BMPheader {
         int8_t id1;            // Завжди дві літери 'B' і 'M'
         int8_t id2;            // Завжди дві літери 'B' і 'M'
         int32_t filesize;        // Розмір файла в байтах
@@ -27,22 +24,19 @@ private:
         int32_t biYPelsPerMeter; // Те саме, по висоті
         int32_t biClrUsed;       // Для індексованих зображень, можна поставити 0L
         int32_t biClrImportant;  // Те саме
-    } BMPHEAD;
+    };
     struct pixelData {
         int8_t redComponent;
         int8_t greenComponent;
         int8_t blueComponent;
     };
-    void BiggerWidth(int);
-    void BiggerHeight(int);
-    void SmallerWidth(int);
-    void SmallerHeight(int);
-    void readHead();
+    void BiggerWidth(string, string, int);
+    void BiggerHeight(string, string, int);
+    void SmallerWidth(string, string, int);
+    void SmallerHeight(string, string, int);
+    BMPheader readHead(string);
 public:
-    BMPpicture(string );
-    void copyTo(string);
-    void copyBigger(string,int);
-    void copyBigger(string, double);
-    void outputHead();
+    void copyTo(string, string);
+    void copyBigger(string, string, int);
+    void copyBigger(string, string, double);
 };
-
